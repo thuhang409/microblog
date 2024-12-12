@@ -33,5 +33,13 @@
     {% for post in posts %}
         {% include '_post.html' %}
     {% endfor %}
-{% endblock %}
 
+    <!-- Page Navigation -->
+    {% if prev_url %}
+        <a href="{{ prev_url }}">Prev</a>
+    {% endif %}
+    {% if next_url %}
+        <a href="{{ next_url }}">Next</a>
+    {% endif %}
+{% endblock %}
+ 
