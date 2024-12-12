@@ -7,7 +7,7 @@ from app import db
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User, Post
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
-
+from app.translate import translate
 
 @app.before_request
 def before_request():
@@ -156,3 +156,11 @@ def unfollow(username):
         return redirect(url_for('profile', username=username))
     else:
         return redirect(url_for('index'))
+    
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    data = request.get_json()
+    return {'text': translate(data['text'],
+                              data['source_language'],
+                              data['dest_language'])}
