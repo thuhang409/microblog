@@ -24,10 +24,6 @@ from app.models import User
 #                 raise ValidationError(_('Please use a different username.'))
 
 
-class EmptyForm(FlaskForm):
-    submit = SubmitField('Submit')
-
-
 class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])

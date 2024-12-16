@@ -1,13 +1,13 @@
 from openai import OpenAI
-from app import app
+from flask import current_app
 
 
 def translate(text, source_language, dst_language):
-    print(app.config['OPENAI_API_KEY'])
-    if 'OPENAI_API_KEY' not in app.config or not app.config['OPENAI_API_KEY']:
+    print(current_app.config['OPENAI_API_KEY'])
+    if 'OPENAI_API_KEY' not in current_app.config or not current_app.config['OPENAI_API_KEY']:
         return 'Error: OPENAI_API_KEY is missing.'
 
-    client = OpenAI(api_key=app.config['OPENAI_API_KEY'])
+    client = OpenAI(api_key=current_app.config['OPENAI_API_KEY'])
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
