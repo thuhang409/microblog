@@ -9,6 +9,8 @@ from langdetect import detect, LangDetectException
 from app.models import User, Post
 from app.main.forms import EditProfileForm, PostForm, EmptyForm
 from app.translate import translate
+from flask_babel import _
+
 
 @bp.before_request
 def before_request():
@@ -125,6 +127,13 @@ def unfollow(username):
         return redirect(url_for('main.profile', username=username))
     else:
         return redirect(url_for('main.index'))
+
+@bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    user = db.first_or_404(sa.select(User).where(User.username == username))
+    form = EmptyForm()
+    return render_template('user_popup.html', user=user, form=form)
     
 @bp.route('/translate', methods=['POST'])
 @login_required

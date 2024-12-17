@@ -1,11 +1,12 @@
 from openai import OpenAI
 from flask import current_app
+from flask_babel import _
+
 
 
 def translate(text, source_language, dst_language):
-    print(current_app.config['OPENAI_API_KEY'])
     if 'OPENAI_API_KEY' not in current_app.config or not current_app.config['OPENAI_API_KEY']:
-        return 'Error: OPENAI_API_KEY is missing.'
+        return _('Error: OPENAI_API_KEY is missing.')
 
     client = OpenAI(api_key=current_app.config['OPENAI_API_KEY'])
     completion = client.chat.completions.create(
