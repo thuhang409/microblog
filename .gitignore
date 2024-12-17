@@ -3,3 +3,6 @@ app.db
 
 __pycache__
 venv
+
+.env
+FETCH_HEAD
