@@ -4,7 +4,7 @@
     {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
     <div class="clearfix"></div>
     {% if user.last_seen %}
-    <p>{{ _('Last seen on') }}: {{ moment(user.last_seen).format('lll') }}</p>
+    <p>{{ _('Last seen on') }}: {{ user.last_seen }}</p>
     {% endif %}
     <p>{{ _('%(count)d followers', count=user.followers_count()) }}, {{ _('%(count)d following', count=user.following_count()) }}</p>
     {% if user != current_user %}
